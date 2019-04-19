@@ -59,7 +59,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="4dp"
         android:layout_marginRight="10dp"
-        android:background="@android:color/white"
+        android:background="@android:color/transparent"
         android:scaleType="fitEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageMain"
@@ -81,7 +81,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="@android:color/transparent"
             android:scaleType="fitEnd"
             app:srcCompat="@drawable/ic_heart_outline_grey" />
 
@@ -92,7 +92,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="@android:color/transparent"
             android:scaleType="fitEnd"
             app:srcCompat="@drawable/ic_comment_outline_grey" />
 
@@ -103,7 +103,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="@android:color/transparent"
             android:scaleType="fitEnd"
             app:srcCompat="@drawable/ic_more_grey" />
     </LinearLayout>
