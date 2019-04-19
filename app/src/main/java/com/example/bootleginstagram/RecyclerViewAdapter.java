@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.Random;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHoler> {
 
@@ -36,6 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler viewHoler, int i) {
+        Random rand = new Random();
+
         Glide.with(context)
                 .asBitmap()
                 .load(instagramUsers.get(i).getUrls().getFull())
@@ -45,7 +48,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .asBitmap()
                 .load(instagramUsers.get(i).getUser().getProfileImage().getLarge())
                 .into(viewHoler.ImageProfile);
+        viewHoler.Name.setText(instagramUsers.get(i).getUser().getName());
+        viewHoler.Name2.setText(instagramUsers.get(rand.nextInt(10)).getUser().getFirstName());
+        viewHoler.Name3.setText(instagramUsers.get(i).getUser().getName());
+        viewHoler.RandomNum.setText(instagramUsers.get(i).getLikes()+" others.");
 
+        if (instagramUsers.get(i).getDescription()!=null) {
+            viewHoler.Desc.setText(instagramUsers.get(i).getDescription().toString());
+        }else {
+            viewHoler.Desc.setText("#NoDescription");
+        }
+        if (instagramUsers.get(i).getUser().getLocation()!=null) {
+            viewHoler.Location.setText(instagramUsers.get(i).getUser().getLocation().toString());
+        }else {
+            viewHoler.Location.setText("");
+        }
 
     }
 
