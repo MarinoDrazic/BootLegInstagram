@@ -70,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return instagramUsers.size();
     }
+
     public class ViewHoler extends RecyclerView.ViewHolder {
         ImageView ImageProfile;
         ImageView ImageMain;
