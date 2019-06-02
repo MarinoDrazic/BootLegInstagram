@@ -41,12 +41,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Glide.with(context)
                 .asBitmap()
-                .load(instagramUsers.get(i).getUrls().getFull())
+                .load(instagramUsers.get(i).getUrls().getRegular())
                 .placeholder(R.drawable.img_feed_bottom_1)
                 .into(viewHoler.ImageMain);
         Glide.with(context)
                 .asBitmap()
-                .load(instagramUsers.get(i).getUser().getProfileImage().getLarge())
+                .load(instagramUsers.get(i).getUser().getProfileImage().getMedium())
                 .into(viewHoler.ImageProfile);
         viewHoler.Name.setText(instagramUsers.get(i).getUser().getName());
         viewHoler.Name2.setText(instagramUsers.get(rand.nextInt(10)).getUser().getFirstName());
@@ -70,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return instagramUsers.size();
     }
+
     public class ViewHoler extends RecyclerView.ViewHolder {
         ImageView ImageProfile;
         ImageView ImageMain;
