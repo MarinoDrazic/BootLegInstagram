@@ -1,9 +1,12 @@
 package com.example.bootleginstagram;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,17 +24,36 @@ public class ProfileFragment extends Fragment {
     BootlegViewModel bootlegViewModel;
     View view;
     RecyclerView recyclerView;
+    private ViewPager viewPager;
+    private SectionsPageAdapter sectionsPageAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.profilefrag,container,false);
-        recyclerView=view.getRootView().findViewById(R.id.MainProgileRecycler);
+        /*
+        bootlegViewModel.getThemPickm8().observe(this, users -> initRecyclerView(users) );
+        */
         bootlegViewModel= MainFeedFragment.GetBootlegViewModel();
         bootlegViewModel.getThemPickm8().observe(this, users -> FillWithData(users)  );
-        bootlegViewModel.getThemPickm8().observe(this, users -> initRecyclerView(users) );
 
+        sectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+
+        viewPager = view.findViewById(R.id.ViewPagerID2);
+        setupViewPager(viewPager);
+        TabLayout tabLayout = view.findViewById(R.id.ProfileTab);
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
+    }
+    private void setupViewPager(ViewPager viewPager)
+    {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
+        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
+        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
+        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
+        viewPager.setAdapter(adapter);
+
     }
     private void FillWithData(List<InstagramUsers> users)
     {
