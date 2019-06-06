@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHoler viewHoler, int i) {
         Random rand = new Random();
+        boolean pressed=false;
 
         Glide.with(context)
                 .asBitmap()
@@ -63,6 +65,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }else {
             viewHoler.Location.setText("");
         }
+        viewHoler.imageButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                if (viewHoler.pressed)
+                {
+                    viewHoler.pressed=false;
+                    viewHoler.imageButton.setBackgroundResource(R.drawable.ic_heart_outline_grey);
+                }else {
+                    viewHoler.pressed=true;
+                    viewHoler.imageButton.setBackgroundResource(R.drawable.ic_heart_red);
+                }
+            }
+
+        });
 
     }
 
@@ -80,6 +97,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView RandomNum;
         TextView Desc;
         TextView Name3;
+        ImageButton imageButton;
+        boolean pressed;
 
 
         public ViewHoler(@NonNull View itemView) {
@@ -92,6 +111,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             RandomNum= itemView.findViewById(R.id.textNumber);
             Desc= itemView.findViewById(R.id.textDesc);
             Name3= itemView.findViewById(R.id.Name2);
+            imageButton=itemView.findViewById(R.id.imageButton);
 
 
         }
