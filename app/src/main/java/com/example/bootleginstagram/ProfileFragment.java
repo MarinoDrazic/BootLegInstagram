@@ -50,7 +50,7 @@ public class ProfileFragment extends Fragment {
     {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
-        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
+        adapter.addFragment(new ProfileRecyclerFragmentTwo(),"MainFeed" );
         adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
         viewPager.setAdapter(adapter);
 
@@ -75,9 +75,9 @@ public class ProfileFragment extends Fragment {
                 .load(User.getUser().getProfileImage().getLarge())
                 .into(ProfileImage);
         ProfileName.setText(User.getUser().getInstagramUsername());
-        Posts.setText("   "+User.getUser().getTotalPhotos()+"\n Photos");
-        Followers.setText("    "+User.getUser().getTotalLikes()+"\n Likes");
-        Following.setText("      "+User.getUser().getTotalCollections()+"\nCollections");
+        Posts.setText(User.getUser().getTotalPhotos()+"\n Photos");
+        Followers.setText(User.getUser().getTotalLikes()+"\n Likes");
+        Following.setText(User.getUser().getTotalCollections()+"\nCollections");
         Description.setText(User.getUser().getBio());
     }
     private void initRecyclerView(List<InstagramUsers> users){

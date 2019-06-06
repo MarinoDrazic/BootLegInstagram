@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class ProfileRecyclerFragmentOne extends Fragment {
-
+public class ProfileRecyclerFragmentTwo extends Fragment {
     BootlegViewModel bootlegViewModel;
     View view;
     RecyclerView recyclerView;
@@ -29,10 +28,10 @@ public class ProfileRecyclerFragmentOne extends Fragment {
         return view;
     }
     private void initRecyclerView(List<InstagramUsers> users){
-        GridRecyclerViewAdapter adapter = new GridRecyclerViewAdapter(users,getContext());
+        RecyclerViewAdapterForProfileFeed adapter = new RecyclerViewAdapterForProfileFeed(users,getContext());
 
         recyclerView.setAdapter((adapter));
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
     }
