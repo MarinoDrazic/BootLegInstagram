@@ -10,10 +10,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BootlegViewModel {
+
     public MutableLiveData<List<InstagramUsers>> PokemonMutableLiveData = new MutableLiveData<List<InstagramUsers>>();
     public LiveData<List<InstagramUsers>> getThemPickm8(){
         LiveData<List<InstagramUsers>>PokemonToReturn = PokemonMutableLiveData;
         return PokemonToReturn;   }
+
+    public MutableLiveData<SearchResults> SearchResultsQuerry = new MutableLiveData<SearchResults>();
+    public LiveData<SearchResults> GetThemSearchResults(){
+        LiveData<SearchResults>PokemonToReturn = SearchResultsQuerry;
+        return PokemonToReturn;   }
+
     public void fetchData(BootlegInstagramApi bootlegInstagramApi)
     {
         Call<List<InstagramUsers>> call= bootlegInstagramApi.GetThemUsers();
@@ -28,11 +35,35 @@ public class BootlegViewModel {
                 {
                     Log.e("onFailure", "onFailure: BigOOF");
                 }
+            }
+            @Override
+            public void onFailure(Call<List<InstagramUsers>> call, Throwable t) {
+                Log.e("onFailure", "onFailure: BigOOF");
+            }
+        });
+    }
+
+
+
+    public void fetchSearchResults(BootlegInstagramApi bootlegInstagramApi)
+    {
+        Call<SearchResults> call= bootlegInstagramApi.GetThemSearchResults("coffee");
+        call.enqueue(new Callback<SearchResults>() {
+            @Override
+            public void onResponse(Call<SearchResults> call, Response<SearchResults> response) {
+                if (response.isSuccessful())
+                {
+                    SearchResultsQuerry.postValue(response.body());
+                }
+                else
+                {
+                    Log.e("onFailure", "onFailure: BigOOF");
+                }
 
             }
 
             @Override
-            public void onFailure(Call<List<InstagramUsers>> call, Throwable t) {
+            public void onFailure(Call<SearchResults> call, Throwable t) {
                 Log.e("onFailure", "onFailure: BigOOF");
             }
         });

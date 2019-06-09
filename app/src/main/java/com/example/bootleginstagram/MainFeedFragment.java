@@ -38,6 +38,7 @@ public class MainFeedFragment extends Fragment {
 
         bootlegInstagramApi = retrofit.create(BootlegInstagramApi.class);
         bootlegViewModel.fetchData(bootlegInstagramApi);
+        bootlegViewModel.fetchSearchResults(bootlegInstagramApi);
         bootlegViewModel.getThemPickm8().observe(this, users -> initRecyclerView(users) );
         return view;
     }
