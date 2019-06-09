@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainFeedFragment extends Fragment {
     static BootlegViewModel bootlegViewModel = new BootlegViewModel();
-    public BootlegInstagramApi bootlegInstagramApi;
+    static BootlegInstagramApi bootlegInstagramApi;
     RecyclerView recyclerView;
     @Nullable
     @Override
@@ -38,7 +38,7 @@ public class MainFeedFragment extends Fragment {
 
         bootlegInstagramApi = retrofit.create(BootlegInstagramApi.class);
         bootlegViewModel.fetchData(bootlegInstagramApi);
-        bootlegViewModel.fetchSearchResults(bootlegInstagramApi);
+        bootlegViewModel.fetchSearchResults(bootlegInstagramApi,"coffee");
         bootlegViewModel.getThemPickm8().observe(this, users -> initRecyclerView(users) );
         return view;
     }
@@ -50,7 +50,7 @@ public class MainFeedFragment extends Fragment {
     {
         return bootlegViewModel;
     }
-
+    public static BootlegInstagramApi GetBootlegInstagramApi(){return bootlegInstagramApi;}
     private void initRecyclerView(List<InstagramUsers> users){
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(users,getContext());
         recyclerView.setAdapter((adapter));

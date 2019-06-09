@@ -35,37 +35,39 @@ public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecycl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoler viewHoler, int i) {
+        if (searchResultsList.getResults().size()==18) {
 
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image1);
-        Brojac++;
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image2);
-        Brojac++;
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image3);
-        Brojac++;
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image4);
-        Brojac++;
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image5);
-        Brojac++;
-        Glide.with(context)
-                .asBitmap()
-                .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
-                .into(viewHoler.Image6);
-        Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image1);
+            Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image2);
+            Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image3);
+            Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image4);
+            Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image5);
+            Brojac++;
+            Glide.with(context)
+                    .asBitmap()
+                    .load(searchResultsList.getResults().get(Brojac).getUrls().getRegular())
+                    .into(viewHoler.Image6);
+            Brojac++;
+        }
     }
 
     @Override

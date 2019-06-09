@@ -45,9 +45,9 @@ public class BootlegViewModel {
 
 
 
-    public void fetchSearchResults(BootlegInstagramApi bootlegInstagramApi)
+    public void fetchSearchResults(BootlegInstagramApi bootlegInstagramApi,String querry)
     {
-        Call<SearchResults> call= bootlegInstagramApi.GetThemSearchResults("coffee");
+        Call<SearchResults> call= bootlegInstagramApi.GetThemSearchResults(querry);
         call.enqueue(new Callback<SearchResults>() {
             @Override
             public void onResponse(Call<SearchResults> call, Response<SearchResults> response) {
