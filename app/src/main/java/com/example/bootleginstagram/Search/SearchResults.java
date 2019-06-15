@@ -1,4 +1,4 @@
-package com.example.bootleginstagram;
+package com.example.bootleginstagram.Search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

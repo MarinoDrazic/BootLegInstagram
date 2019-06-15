@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
+import com.example.bootleginstagram.Search.SearchResults;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
