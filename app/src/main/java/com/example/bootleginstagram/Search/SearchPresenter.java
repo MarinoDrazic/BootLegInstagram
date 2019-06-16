@@ -1,13 +1,17 @@
 package com.example.bootleginstagram.Search;
 
 public class SearchPresenter {
+
     private SearchRepository repository;
+
     SearchFragment view;
+
     public SearchPresenter (SearchFragment view,SearchRepository repository)
     {
         this.view=view;
         this.repository=repository;
     }
+
     public  void getImagesData(String querry)
     {
         repository.getImages(new SearchRepositoryDataSource.ImagesCallback() {
@@ -18,12 +22,12 @@ public class SearchPresenter {
 
             @Override
             public void onNotEnoughImages(String AmountOfImagesFetched) {
-                //TODO connect to view method
+                view.notEnoughItems(AmountOfImagesFetched);
             }
 
             @Override
             public void onEmpty() {
-                //TODO connect to view method
+                view.onEmpty();
 
             }
         },querry);

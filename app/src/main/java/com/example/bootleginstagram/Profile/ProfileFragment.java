@@ -1,13 +1,11 @@
-package com.example.bootleginstagram;
+package com.example.bootleginstagram.Profile;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,28 +15,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.bootleginstagram.InstagramUsers;
+import com.example.bootleginstagram.R;
+import com.example.bootleginstagram.RecyclerViewAdapter;
+import com.example.bootleginstagram.SectionsPageAdapter;
 
 import java.util.List;
 
 public class ProfileFragment extends Fragment {
-    BootlegViewModel bootlegViewModel;
+
+    private ProfilePresenter presenter;
     View view;
-    RecyclerView recyclerView;
     private ViewPager viewPager;
     private SectionsPageAdapter sectionsPageAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.profilefrag,container,false);
-        /*
-        bootlegViewModel.getThemPickm8().observe(this, users -> initRecyclerView(users) );
-        */
-        bootlegViewModel= MainFeedFragment.GetBootlegViewModel();
-        bootlegViewModel.getThemPickm8().observe(this, users -> FillWithData(users)  );
 
         sectionsPageAdapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-
         viewPager = view.findViewById(R.id.ViewPagerID2);
         setupViewPager(viewPager);
         TabLayout tabLayout = view.findViewById(R.id.ProfileTab);
@@ -46,29 +43,46 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //This just feels wrong?
+        presenter= new ProfilePresenter(this,
+                (ProfileRecyclerFragmentOne) sectionsPageAdapter.getItem(0),
+                (ProfileRecyclerFragmentTwo) sectionsPageAdapter.getItem(1),
+                (ProfileRecyclerFragmentTwo) sectionsPageAdapter.getItem(2),
+                ProfileRepository.getInstance(RemoteProfileDataSource.getInstance()));
+        presenter.getUsers();
+    }
+
     private void setupViewPager(ViewPager viewPager)
     {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
-        adapter.addFragment(new ProfileRecyclerFragmentTwo(),"MainFeed" );
-        adapter.addFragment(new ProfileRecyclerFragmentOne(),"MainFeed" );
-        viewPager.setAdapter(adapter);
+        sectionsPageAdapter.addFragment(new ProfileRecyclerFragmentOne(),"Grid" );
+        sectionsPageAdapter.addFragment(new ProfileRecyclerFragmentTwo(),"MainFeed" );
+        sectionsPageAdapter.addFragment(new ProfileRecyclerFragmentTwo(),"Grid2" );
+
+        viewPager.setAdapter(sectionsPageAdapter);
 
     }
-    private void FillWithData(List<InstagramUsers> users)
+
+    public void FillWithData(List<InstagramUsers> users)
     {
+        //TODO user butter
         ImageView ProfileImage;
         TextView ProfileName;
         TextView Posts;
         TextView Followers;
         TextView Following;
         TextView Description;
+
         ProfileImage=view.findViewById(R.id.imageProfile);
         ProfileName =view.findViewById(R.id.textViewUserName);
         Posts =view.findViewById(R.id.textViewPosts);
         Followers =view.findViewById(R.id.textViewFollowers);
         Following =view.findViewById(R.id.textViewFollowing);
         Description =view.findViewById(R.id.textViewDescription);
+        //TODO split to make more readable or rework this completely.
         InstagramUsers User = users.get(0);
         Glide.with(getContext())
                 .asBitmap()
@@ -80,11 +94,6 @@ public class ProfileFragment extends Fragment {
         Following.setText(User.getUser().getTotalCollections()+"\nCollections");
         Description.setText(User.getUser().getBio());
     }
-    private void initRecyclerView(List<InstagramUsers> users){
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(users,getContext());
-        recyclerView.setAdapter((adapter));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    }
 
     }

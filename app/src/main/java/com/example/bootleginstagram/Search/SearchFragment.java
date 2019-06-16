@@ -11,13 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.bootleginstagram.BootlegViewModel;
 import com.example.bootleginstagram.R;
 import com.example.bootleginstagram.SearchRecyclerViewAdapter;
 
 public class SearchFragment extends Fragment {
-    BootlegViewModel bootlegViewModel;
+
     private SearchPresenter presenter;
     RecyclerView recyclerView;
 
@@ -53,10 +54,16 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    public void initRecyclerView(SearchResults Results)
-    {
+    public void initRecyclerView(SearchResults Results)  {
         SearchRecyclerViewAdapter adapter = new SearchRecyclerViewAdapter(Results,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
+    public void notEnoughItems(String message)  {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+    public void onEmpty()  {
+        Toast.makeText(getContext(), "No items found for your search.", Toast.LENGTH_SHORT).show();
+    }
+
 }
