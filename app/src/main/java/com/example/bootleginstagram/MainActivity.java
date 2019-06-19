@@ -5,7 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.bootleginstagram.MainFeed.MainFeedFragment;
 import com.example.bootleginstagram.Profile.ProfileFragment;
+import com.example.bootleginstagram.Profile.SectionsPageAdapter;
 import com.example.bootleginstagram.Search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         viewPager = findViewById(R.id.ViewPagerID);
+        viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);

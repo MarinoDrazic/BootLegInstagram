@@ -1,6 +1,7 @@
 package com.example.bootleginstagram.Profile;
 
-import com.example.bootleginstagram.InstagramUsers;
+import com.example.bootleginstagram.SharedModels.InstagramUsers;
+import com.example.bootleginstagram.SharedModels.ProfileRepositoryDataSource;
 
 import java.util.List;
 

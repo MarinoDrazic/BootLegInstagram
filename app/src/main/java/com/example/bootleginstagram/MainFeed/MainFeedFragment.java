@@ -1,4 +1,4 @@
-package com.example.bootleginstagram.Profile;
+package com.example.bootleginstagram.MainFeed;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,46 +12,42 @@ import android.view.ViewGroup;
 
 import com.example.bootleginstagram.SharedModels.InstagramUsers;
 import com.example.bootleginstagram.R;
+import com.example.bootleginstagram.RecyclerAdapters.RecyclerViewAdapter;
+import com.example.bootleginstagram.SharedModels.RemoteProfileDataSource;
 
 import java.util.List;
 
-public class ProfileRecyclerFragmentTwo extends Fragment implements  ProfileRecyclerFragmentOneCallback{
 
-
-    private RecyclerView recyclerView;
-    private List<InstagramUsers> users;
-
-    public  ProfileRecyclerFragmentTwo getInstance(List<InstagramUsers> users) {
-        this.users=users;
-        return this;
-    }
+public class MainFeedFragment extends Fragment {
+//TODO Butterup this bitch
+    RecyclerView recyclerView;
+    private MainFeedPresenter presenter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.profiletablayout,container,false);
-
+        View view = inflater.inflate(R.layout.mainfeedfrag,container,false);
+        recyclerView=view.findViewById(R.id.rvFeed);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView=view.findViewById(R.id.ProfileTabRecyclerOne);
-        initRecyclerView();
+        presenter= new MainFeedPresenter(this,
+                MainFeedRepository.getInstance(RemoteProfileDataSource.getInstance()));
+        presenter.getUsers();
     }
 
+    public MainFeedFragment()
+    {
 
+    }
 
-    @Override
-    public void initRecyclerView() {
-
-        RecyclerViewAdapterForProfileFeed adapter = new RecyclerViewAdapterForProfileFeed(users,getContext());
-
+    public void initRecyclerView(List<InstagramUsers> users){
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(users,getContext());
         recyclerView.setAdapter((adapter));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
 
     }
-
 
 }

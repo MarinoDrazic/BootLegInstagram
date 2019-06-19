@@ -1,6 +1,6 @@
 package com.example.bootleginstagram.Search;
 import android.util.Log;
-import com.example.bootleginstagram.BootlegInstagramApi;
+import com.example.bootleginstagram.SharedModels.BootlegInstagramApi;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;

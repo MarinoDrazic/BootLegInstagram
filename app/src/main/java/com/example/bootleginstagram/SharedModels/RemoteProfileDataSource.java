@@ -1,9 +1,4 @@
-package com.example.bootleginstagram.Profile;
-
-import android.util.Log;
-
-import com.example.bootleginstagram.BootlegInstagramApi;
-import com.example.bootleginstagram.InstagramUsers;
+package com.example.bootleginstagram.SharedModels;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.bootleginstagram.InstagramUsers;
+import com.example.bootleginstagram.SharedModels.InstagramUsers;
 import com.example.bootleginstagram.R;
 
 import java.util.List;

@@ -13,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.bootleginstagram.BootlegViewModel;
 import com.example.bootleginstagram.R;
-import com.example.bootleginstagram.SearchRecyclerViewAdapter;
+import com.example.bootleginstagram.RecyclerAdapters.SearchRecyclerViewAdapter;
 
 public class SearchFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.bootleginstagram;
+package com.example.bootleginstagram.RecyclerAdapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.bootleginstagram.R;
 import com.example.bootleginstagram.Search.SearchResults;
 
 public class SearchRecyclerViewAdapter extends RecyclerView.Adapter<SearchRecyclerViewAdapter.ViewHoler> {

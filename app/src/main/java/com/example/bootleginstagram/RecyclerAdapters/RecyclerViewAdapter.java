@@ -1,6 +1,7 @@
-package com.example.bootleginstagram;
+package com.example.bootleginstagram.RecyclerAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.bootleginstagram.R;
+import com.example.bootleginstagram.SharedModels.InstagramUsers;
+import com.example.bootleginstagram.ViewOtherUser.ViewUser;
 
 import java.util.List;
 import java.util.Random;
@@ -65,6 +69,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }else {
             viewHoler.Location.setText("");
         }
+        viewHoler.ImageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ViewUser.class);
+                InstagramUsers user=instagramUsers.get(i);
+                intent.putExtra("User",user);
+                context.startActivity(intent);
+            }
+        });
         viewHoler.imageButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

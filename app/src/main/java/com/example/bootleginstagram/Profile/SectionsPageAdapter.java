@@ -1,4 +1,4 @@
-package com.example.bootleginstagram;
+package com.example.bootleginstagram.Profile;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
+
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
     public void addFragment ( Fragment fragment, String string)
